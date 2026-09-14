@@ -1,0 +1,60 @@
+<header>
+  <div>
+    <h1>Panel del aprobador</h1>
+    <p class="subtitle">Solicitudes de reembolso</p>
+  </div>
+
+  <button type="button" class="refresh" (click)="loadRequests()" [disabled]="loading()">
+    Actualizar
+  </button>
+</header>
+
+<nav class="filters" aria-label="Filtrar por estado">
+  @for (option of filterOptions; track option) {
+    <button
+      type="button"
+      class="filter"
+      [class.filter--active]="statusFilter() === option"
+      [attr.aria-pressed]="statusFilter() === option"
+      (click)="changeFilter(option)"
+    >
+      {{ option === 'All' ? 'Todas' : statusLabels[option] }}
+    </button>
+  }
+</nav>
+
+@if (feedback(); as message) {
+  <p class="banner banner--success" role="status">
+    {{ message }}
+    <button type="button" class="dismiss" (click)="dismissFeedback()" aria-label="Cerrar">×</button>
+  </p>
+}
+
+@if (errorMessage(); as message) {
+  <p class="banner banner--error" role="alert">
+    {{ message }}
+    <button type="button" class="retry" (click)="loadRequests()">Reintentar</button>
+  </p>
+}
+
+@if (loading()) {
+  <p class="placeholder">Cargando solicitudes…</p>
+} @else if (requests().length === 0) {
+  <p class="placeholder">{{ emptyMessage() }}</p>
+} @else {
+  <app-requests-table
+    [requests]="requests()"
+    [busyRequestId]="busyRequestId()"
+    (approveRequested)="approve($event)"
+    (rejectRequested)="openRejectDialog($event)"
+  />
+}
+
+@if (requestToReject(); as request) {
+  <app-reject-dialog
+    [request]="request"
+    [submitting]="busyRequestId() !== null"
+    (confirmed)="confirmReject($event)"
+    (cancelled)="closeRejectDialog()"
+  />
+}

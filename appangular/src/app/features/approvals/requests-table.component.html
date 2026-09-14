@@ -1,0 +1,57 @@
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Empleado</th>
+      <th scope="col" class="numeric">Monto</th>
+      <th scope="col">Categoría</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Estado</th>
+      <th scope="col" class="actions-column">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (request of requests(); track request.id) {
+      <tr>
+        <td>{{ request.employeeName }}</td>
+        <td class="numeric">{{ request.amount | currency: 'COP':'symbol-narrow':'1.0-0' }}</td>
+        <td>{{ categoryLabels[request.category] }}</td>
+        <td class="description">
+          {{ request.description }}
+          @if (request.rejectionReason) {
+            <span class="rejection-reason">Motivo: {{ request.rejectionReason }}</span>
+          }
+        </td>
+        <td>{{ request.createdAtUtc | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <span class="status" [class]="'status--' + request.status.toLowerCase()">
+            {{ statusLabels[request.status] }}
+          </span>
+        </td>
+        <td class="actions-column">
+          @if (isActionable(request)) {
+            <button
+              type="button"
+              class="approve"
+              [disabled]="busyRequestId() !== null"
+              (click)="approveRequested.emit(request)"
+            >
+              Aprobar
+            </button>
+            <button
+              type="button"
+              class="reject"
+              [disabled]="busyRequestId() !== null"
+              (click)="rejectRequested.emit(request)"
+            >
+              Rechazar
+            </button>
+          } @else {
+            <span class="decided">Decidida</span>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

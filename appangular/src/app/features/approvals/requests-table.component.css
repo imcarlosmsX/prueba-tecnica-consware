@@ -1,0 +1,105 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 10%);
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+th {
+  background: #f1f5f9;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #475569;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.numeric {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.description {
+  max-width: 280px;
+}
+
+.rejection-reason {
+  display: block;
+  margin-top: 4px;
+  color: #b91c1c;
+  font-size: 12.5px;
+}
+
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status--pending {
+  background: #fdf0d5;
+  color: #7a5200;
+}
+
+.status--approved {
+  background: #dcf5e3;
+  color: #11603a;
+}
+
+.status--rejected {
+  background: #fbe0e0;
+  color: #8c1d1d;
+}
+
+.actions-column {
+  white-space: nowrap;
+}
+
+button {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.approve {
+  background: #11603a;
+  color: #fff;
+}
+
+.reject {
+  background: #fff;
+  border-color: #b91c1c;
+  color: #b91c1c;
+}
+
+.decided {
+  color: #94a3b8;
+  font-size: 13px;
+}

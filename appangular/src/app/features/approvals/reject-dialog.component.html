@@ -1,0 +1,43 @@
+<div class="backdrop" (click)="cancelled.emit()"></div>
+
+<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="reject-title">
+  <h2 id="reject-title">Rechazar solicitud</h2>
+
+  <p class="summary">
+    {{ request().employeeName }} ·
+    {{ request().amount | currency: 'COP':'symbol-narrow':'1.0-0' }}
+  </p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label for="reason">Motivo del rechazo <span aria-hidden="true">*</span></label>
+
+    <textarea
+      id="reason"
+      formControlName="reason"
+      rows="4"
+      [maxlength]="maxReasonLength"
+      [attr.aria-invalid]="reason.invalid && reason.touched"
+      placeholder="Explica por qué se rechaza esta solicitud"
+    ></textarea>
+
+    @if (reason.touched && reason.invalid) {
+      <p class="field-error">
+        @if (reason.hasError('required') || reason.hasError('pattern')) {
+          El motivo es obligatorio.
+        } @else {
+          El motivo no puede superar {{ maxReasonLength }} caracteres.
+        }
+      </p>
+    }
+
+    <div class="actions">
+      <button type="button" class="secondary" (click)="cancelled.emit()" [disabled]="submitting()">
+        Cancelar
+      </button>
+
+      <button type="submit" class="danger" [disabled]="form.invalid || submitting()">
+        {{ submitting() ? 'Rechazando…' : 'Rechazar' }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,85 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(15 23 42 / 45%);
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, calc(100vw - 32px));
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 25%);
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.summary {
+  margin: 0 0 16px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+textarea[aria-invalid='true'] {
+  border-color: #b91c1c;
+}
+
+.field-error {
+  margin: 6px 0 0;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.secondary {
+  background: #fff;
+  border-color: #cbd5e1;
+}
+
+.danger {
+  background: #b91c1c;
+  color: #fff;
+}

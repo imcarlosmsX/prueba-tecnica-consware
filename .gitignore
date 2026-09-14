@@ -2,3 +2,40 @@ claude.md
 cmds_importants.txt
 propmt.txt
 Prueba-Tecnica-Consware (1) 1.md
+DEFENSE.md
+DOMAIN-CONTRACT.md
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.db
+*.db-shm
+*.db-wal
+appsettings.*.local.json
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+appflutter/build/
+appflutter/.packages
+appflutter/ios/Pods/
+appflutter/android/.gradle/
+appflutter/android/local.properties
+*.iml
+
+# Angular / Node
+node_modules/
+appangular/dist/
+appangular/.angular/
+npm-debug.log*
+
+# Editores y sistema
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
